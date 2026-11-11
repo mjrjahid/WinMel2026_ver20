@@ -1,0 +1,27 @@
+{
+  "source": "network",
+  "explicit_input": null,
+  "selected_path": "/nfs/fjahiduzzaman/thesis/S_P/WinMal2026_v20/Dataset/network_dataset_preprocessed_high_accuracy.xlsx",
+  "selection_uses_labels_or_model_scores": false,
+  "candidates": [
+    {
+      "path": "/nfs/fjahiduzzaman/thesis/S_P/WinMal2026_v20/Dataset/network_dataset_preprocessed_high_accuracy.xlsx",
+      "compatible": true,
+      "columns": [
+        "sha256_sample",
+        "avg_domain_len",
+        "mean_domain_entropy",
+        "n_public_service_domains",
+        "n_unique_tlds",
+        "n_public_ips",
+        "n_unique_ips",
+        "domains_per_conn",
+        "target"
+      ],
+      "missing_required_fields": [],
+      "source_normalization_notes": [],
+      "opaque_category_fields": 0,
+      "raw_network_lists": false
+    }
+  ]
+}

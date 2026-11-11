@@ -1,0 +1,106 @@
+{
+  "script_version": "2026-11-08-evidence-audit-grouped-v20-gaussian-float64",
+  "script_sha256": "93f6be6ab24cd4290cb49945522a4034e4df7ef4e1bf325455c48d6dc0908817",
+  "python": "3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 13:27:36) [GCC 11.2.0]",
+  "platform": "Linux-7.0.0-28-generic-x86_64-with-glibc2.39",
+  "packages": {
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.8.0",
+    "matplotlib": "3.10.9",
+    "openpyxl": "3.1.5",
+    "shap": "0.52.0",
+    "xgboost": "3.4.0",
+    "catboost": "1.2.10"
+  },
+  "cpu_threads": 16,
+  "slurm_job_id": "16393",
+  "gpu_enabled": false,
+  "arguments": {
+    "data_dir": "/nfs/fjahiduzzaman/thesis/S_P/WinMal2026_v20/Dataset",
+    "output_dir": "/nfs/fjahiduzzaman/thesis/S_P/WinMal2026_v20/results/winmal_v20",
+    "datasets": [
+      "disk",
+      "memory",
+      "network"
+    ],
+    "disk_file": null,
+    "memory_file": null,
+    "network_file": null,
+    "experiments": [
+      "primary",
+      "split-audit",
+      "ablations",
+      "collision",
+      "temporal",
+      "external",
+      "label-audit"
+    ],
+    "seeds": [
+      42,
+      123,
+      350
+    ],
+    "folds": 10,
+    "min_samples": 10,
+    "models": [
+      "all"
+    ],
+    "diagnostic_models": [
+      "Logistic Regression",
+      "Random Forest"
+    ],
+    "collision_sources": [
+      "network"
+    ],
+    "bootstrap": 500,
+    "text_max_features": 512,
+    "dense_budget_mb": 512,
+    "metadata_csv": null,
+    "temporal_cutoff": null,
+    "external_data_dir": null,
+    "label_audit_csv": null,
+    "review_per_family": 5,
+    "use_gpu": false,
+    "require_gpu": false,
+    "skip_xai": false,
+    "xai_seed": 42,
+    "xai_background_size": 32,
+    "xai_explain_size": 60,
+    "skip_plots": false,
+    "enable_tsne": false,
+    "skip_tsne": false,
+    "skip_3d_tsne": false,
+    "tsne_max_points": 2000,
+    "tsne_iterations": 1000,
+    "tsne_perplexity": 30.0,
+    "resume": false,
+    "audit_only": false,
+    "self_test": false,
+    "code_sha256": "93f6be6ab24cd4290cb49945522a4034e4df7ef4e1bf325455c48d6dc0908817",
+    "input_checksums": {
+      "disk": "fb92a04cca498ac347269461f5bfeb4394de69740418a07e39af337d4e1f3595",
+      "memory": "c35c85e2feb9ede463ebbb1e6649d8288ba8f204e10013f7288f028a6626f7c1",
+      "network": "d69d57fdc612433551deb3c1ee419178bbd868c8d4a8dbd9eda290c7a1c13464"
+    },
+    "nonfatal_failures": [],
+    "gpu_enabled": false
+  },
+  "primary_metric": "pooled out-of-fold macro-F1 on a fixed family axis",
+  "claim_limit": "No promise of conference acceptance. No child-family ground truth, temporal evidence, or empirical results are invented.",
+  "started_utc": "2026-11-08T18:11:15.747924+00:00",
+  "finished_utc": "2026-11-09T00:16:59.210660+00:00",
+  "elapsed_seconds": 21943.45882054791,
+  "input_bytes": 10264936,
+  "result_bytes_before_final_metadata_write": 506842491,
+  "input_checksums": {
+    "disk": "fb92a04cca498ac347269461f5bfeb4394de69740418a07e39af337d4e1f3595",
+    "memory": "c35c85e2feb9ede463ebbb1e6649d8288ba8f204e10013f7288f028a6626f7c1",
+    "network": "d69d57fdc612433551deb3c1ee419178bbd868c8d4a8dbd9eda290c7a1c13464"
+  },
+  "failures": [],
+  "status": "completed_requested_available_experiments",
+  "process_peak_rss_kib_linux": 1995516,
+  "memory_scope": "process-wide high-water RSS; not model-specific memory or remote sandbox cost"
+}

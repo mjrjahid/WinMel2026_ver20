@@ -1,0 +1,53 @@
+{
+  "model": "CatBoost",
+  "parameters": {
+    "iterations": 500,
+    "learning_rate": 0.1,
+    "depth": 6,
+    "loss_function": "MultiClass",
+    "thread_count": 16,
+    "random_seed": 350,
+    "verbose": false
+  },
+  "source_fields": [
+    "size",
+    "type",
+    "parent_size",
+    "parent_type",
+    "parent_imphash",
+    "file_name",
+    "file_path"
+  ],
+  "preprocessing": "ColumnTransformer(sparse_threshold=1.0,\n                  transformers=[('field_size',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median'))]),\n                                 ['size']),\n                                ('field_type',\n                                 OneHotEncoder(dtype=<class 'numpy.float32'>,\n                                               handle_unknown='ignore',\n                                               max_categories=512),\n                                 ['type']),\n                                ('field_parent_size',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_f...\n                                ('field_parent_type',\n                                 OneHotEncoder(dtype=<class 'numpy.float32'>,\n                                               handle_unknown='ignore',\n                                               max_categories=512),\n                                 ['parent_type']),\n                                ('field_parent_imphash',\n                                 OneHotEncoder(dtype=<class 'numpy.float32'>,\n                                               handle_unknown='ignore',\n                                               max_categories=512),\n                                 ['parent_imphash']),\n                                ('field_file_name', StableTextVectorizer(),\n                                 'file_name'),\n                                ('field_file_path', StableTextVectorizer(),\n                                 'file_path')])",
+  "dense_budget_mb": 512,
+  "dense_input_dtype": "float32",
+  "selection": "fixed settings, no outer-test tuning",
+  "class_axis": [
+    "a310logger",
+    "agenttesla",
+    "asyncrat",
+    "chaos",
+    "coinminer",
+    "conti",
+    "donutloader",
+    "guloader",
+    "kovter",
+    "lockbit",
+    "lumma",
+    "nanocore",
+    "phobos",
+    "phorpiex",
+    "qbot",
+    "quasarrat",
+    "redline",
+    "revil",
+    "ryuk",
+    "salatstealer",
+    "socks5systemz",
+    "stealc",
+    "vidar",
+    "wannacry"
+  ],
+  "seed": 350,
+  "signature": "0c0105d59aff57577875ac9813ef18e3e43ecc88f7f15d1ac48fdbe25fc3b2a1"
+}

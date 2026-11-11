@@ -1,0 +1,419 @@
+WINMAL2026: EXPERIMENT GUIDE FOR AN EVIDENCE-AUDIT SECURITY PAPER
+Revision: 2026-11-08, v20
+Script: combined_dataset_slurm_gpu_full_analysis_seed_42.py
+
+V20 GAUSSIAN NAIVE BAYES NUMERICAL FIX
+The reported Disk failure was reproduced on the exact uploaded workbook in
+GaussianNB: float32 probabilities had row totals from 0.9995884 to 1.0004768.
+This was a numerical-precision defect in the supplied implementation.
+GaussianNB pipelines (Disk and Network) now fit and predict on float64 dense
+inputs. Other models retain their existing input precision. The dense-memory
+budget accounts for 8 bytes per float64 value rather than 4 bytes for float32.
+GaussianNB hyperparameters, training/test partitions and source cohorts remain
+unchanged. No probabilities are renormalized, clipped, filled or fabricated.
+The previous probability-mass tolerance is unchanged (atol=rtol=1e-5). Shape,
+finite-value and [0,1] checks also remain enforced.
+
+Each model exports probability_validation.csv with the original probability
+dtype, row-sum range, maximum mass error, class axes and validation status.
+Failures now identify source, variant, seed, model and fold, and preserve
+invalid_probabilities.json plus the raw numeric matrix in a compressed NPZ.
+Fit warnings are written before probability validation, so a failed fold still
+has diagnostics. model_specification.json records the dense input dtype.
+
+Verification: 240 real-data probability batches passed across Disk/Network,
+three seeds and feature ablations (including majority baselines); no probability
+repairs were applied. The largest row-mass error was 2.71e-8. Real GaussianNB
+holdout and CatBoost-shaped column-output regressions also passed. This is a
+numerical regression check, not a new final conference evaluation.
+
+Use the complete v20 ZIP in a FRESH results directory. Do not resume a v19 run
+with changed script bytes. For a quick check before the full suite:
+ bash run_winmal_v20.sh --datasets disk --models 'Naive Bayes' --experiments primary --skip-xai --output-dir ./results/v20_nb_check
+Then run the full suite separately with bash run_winmal_v20.sh.
+
+V20 EXACT-UPLOADED-INPUT PACKAGE
+The latest uploaded workbooks have the required source fields. The failed server
+job selected other reduced tables named disk_dataset_preprocessed.xlsx and
+memory_dataset_preprocessed.xlsx. This package includes byte-for-byte copies of
+THE THREE LATEST UPLOADS. It does not substitute older source collections.
+
+Extract WinMal2026_v20_Ready_To_Run.zip and keep its Dataset folder beside the
+script. Run run_winmal_v20.sh; it pins all three paths explicitly, so unrelated
+preprocessed tables on the server cannot take precedence. A standard-library
+verifier checks the packaged file hashes before the analysis starts. Workbook
+contents are unchanged; only download suffixes in filenames are removed inside
+the bundle. Input_provenance.json records both names, bytes and SHA-256 digests.
+The standalone script also prefers its bundled Dataset folder by default.
+
+Included inputs BEFORE this script's documented cohort preparation:
+ Disk:    disk_dataset_preprocessed_high_accuracy(3).xlsx: 3,443 rows / 25 families
+ Memory:  memory_dataset_preprocessed_high_accuracy(5).xlsx: 2,014 rows / 23 families
+ Network: network_dataset_preprocessed_high_accuracy(5).xlsx: 707 rows / 8 families
+
+
+PRE-RUN IDENTITY AUDIT ON THESE EXACT UPLOADS
+Disk: 3,443 supplied rows; 3,434 retained rows / 24 families (uniform min10).
+Memory: 2,014 supplied rows; 1,135 retained rows / 15 families. The other 879
+parent_sha256 values are numbers, not 64-character SHA-256 hashes. They cannot
+establish report-subject identity. They are recorded/excluded from the primary
+grouped benchmark. Genuine originating-report hashes are needed to recover them.
+Network: 707 supplied and retained rows / 8 families.
+With these independent identity components, requested 10-fold evaluation is
+feasible at 2 folds for Disk and 10 folds for Memory/Network across seeds
+42/123/350. The script records actual folds; do not call the Disk run ten-fold.
+No missing hash, class label, or original text value is reconstructed by guessing.
+
+These are the provided PREPROCESSED cohorts. Their earlier filtering/imputation
+cannot be undone. In particular, the 707-row Network table does not recover the
+broader 33-family inventory. Use broader original records for a claim about that
+population. Inherited family labels, timestamps and independent report identity
+still require the evidence described below. The v18 grouping, model hyperparameters, ablations and metrics remain; GaussianNB
+input calculations now use float64 as documented above.
+
+PURPOSE AND CLAIM LIMIT
+The revised experiments ask: how much do executable/report relationships,
+report-derived feature choices, and benchmark cohort definitions affect measured
+malware-family performance? The objective is a reliable, informative benchmark.
+No script change guarantees IEEE S&P acceptance. A convincing novel finding must
+come from the measured results. Do not reuse the old manuscript's accuracies.
+
+The target is the ORIGINATING ANALYSED SUBJECT'S FAMILY CONTEXT. A file or process
+extracted from its report is not automatically independently labelled as that
+family. No true sample alignment, remote report metadata, human validation,
+external collection or first-seen timestamp is invented by this code.
+
+1. INPUTS
+Keep the original schema-preserving source fields and full available population.
+Prefer original source tables, before any accuracy/purity-based family removal.
+The input workbooks are never modified. Accepted formats: XLSX, CSV, TSV, Parquet.
+Explicit --disk-file/--memory-file/--network-file paths override file discovery.
+Automatic selection now checks actual source columns and text availability before
+choosing a workbook. It skips reduced Memory tables missing the original fields,
+recognizes downloaded '(n)' copies, and logs candidates to input_selection.json.
+Explicit incompatible paths fail with a specific explanation rather than being
+silently replaced. It cannot reconstruct missing parent_sha256 or source text.
+
+Disk fields:
+ sha256, size, type, parent_sha256, parent_size, parent_type, parent_imphash,
+ file_name, file_path, target
+Memory fields:
+ sha256, normalized_path, command_line, parent_sha256, total_processes,
+ created_files, registry, modules_count, target
+Network engineered fields:
+ sha256_sample, avg_domain_len, mean_domain_entropy, n_public_service_domains,
+ n_unique_tlds, n_public_ips, n_unique_ips, domains_per_conn, target
+Network raw lists are also accepted if subject/target plus domains and/or hosts
+are present. total_network_connections supplies the denominator when available.
+Extra metadata columns are allowed but never enter the predictor matrix.
+
+Hashes must be real 64-character hexadecimal SHA-256 values. Missing identities
+are excluded and audited; they are never filled with a shared 'Unknown' group.
+Encoded paths/commands/registry text require the original strings. Numeric
+category codes (including parent_imphash) are kept as explicitly marked opaque
+nominal tokens and training-fold one-hot encoded; raw import hashes/types are NOT
+recovered. Zero/-1 imphash placeholders become missing. Details are exported in
+source_value_normalization.json. Prefer the original fields for forensic claims.
+Already imputed/filtered upstream data cannot be restored by this script. A file
+called *_preprocessed_high_accuracy.xlsx is accepted only as the supplied cohort;
+it does not prove recovery of the broader population. Specify the input path to
+avoid silently selecting an unintended historical table.
+
+Raw Network feature version v17 differs from the old parser:
+ - unique lower-case, non-IP domain names; URL hostnames parsed;
+ - final DNS label for TLD, not a public-suffix/eTLD+1 parser;
+ - entropy is Shannon entropy in bits per character over each unique domain;
+ - service matches use exact domain or dot-boundary suffix, not substrings;
+ - fixed service suffixes: google.com, microsoft.com, windows.com, bing.com,
+   cloudflare.com, amazonaws.com;
+ - host counts include valid IPv4/IPv6 only; public means ipaddress.is_global;
+ - nonpositive/missing connections give zero domains_per_conn;
+ - all-zero/silent observations remain in the primary cohort.
+When engineered Network fields are supplied, their earlier definitions remain
+upstream assumptions and must be documented separately.
+
+2. INSTALLATION AND FIRST CHECK
+Use Python 3.10+ and scikit-learn 1.3+. Tested here with Python 3.12/sklearn 1.8.
+
+ python -m pip install numpy pandas scipy matplotlib 'scikit-learn>=1.3' openpyxl shap xgboost catboost
+ python combined_dataset_slurm_gpu_full_analysis_seed_42.py --self-test
+
+XGBoost and CatBoost are optional imports and are explicitly skipped if absent.
+Install both to obtain all seven original source-specific classifier families.
+SHAP rendering needs shap; --skip-xai permits running the predictive suite first.
+No imbalanced-learn dependency or SMOTE is used. Text/ngram compatibility handling
+from the supplied script is retained. Preserve the actual environment versions.
+
+Original classifier families are retained: Disk uses LR, RF, RBF-SVM, KNN,
+Gaussian NB, Gradient Boosting, and CatBoost. Memory/Network replace Gradient
+Boosting with XGBoost; Memory retains Multinomial NB with TRAIN-fitted nonnegative
+numeric scaling. The revised generic source-field encoders change the original
+representations, so old and new scores are not interchangeable.
+
+3. PREPARATION RULES SHARED BY ALL EXPERIMENTS
+ - Canonicalize family strings; exclude missing targets/invalid identities.
+ - Construct connected components from object AND originating-subject SHA-256
+   values in one executable namespace. Links are transitive and survive later
+   filtering, including links through excluded rows with valid identities.
+ - Exclude conflicting family labels for the SAME originating subject and exact
+   duplicate source records, recording each exclusion.
+ - Do NOT exclude reused object hashes solely because their report-context
+   families differ. Report that ambiguity; distinguish context from object labels.
+ - No feature-purity, accuracy, distinct-vector or all-zero exclusion is applied.
+ - Primary closed-family CV: at least 10 rows AND at least 2 independent identity
+   components per family, uniformly for Disk, Memory and Network. The row minimum
+   is configurable with --min-samples. Infeasible classes are documented.
+ - Request 10 folds. Reduce folds only for independent-group feasibility, trying
+   deterministic partitions until every training fold contains every family.
+   Exact split seeds/folds and all row assignments are exported. A giant component
+   may make evaluation infeasible; collect more independent subjects rather than
+   weakening identity isolation to obtain a high score.
+ - Fit imputation, one-hot categories, text vocabulary, TF-IDF and scaling on each
+   training fold only. Raw fields have fixed numeric/category/text roles.
+ - Use no outer-test-fitted weights, no test-set early stopping, and no accuracy
+   target. The former weighted ensemble and CICIoMT parameter-comparison workflow
+   are removed from the primary research suite.
+
+4. EXACT EXPERIMENTS TO REPORT
+
+E1: PRIMARY INDEPENDENT-SUBJECT BENCHMARK (required)
+Question: Can the available fields predict report-subject family context for
+unseen identity components?
+Models: seven available original classifier families plus Dummy Majority.
+Seeds: 42, 123, 350. Component-grouped, train-only-preprocessed CV.
+Primary metric: POOLED out-of-fold macro-F1 with a fixed family axis.
+Also report weighted F1, accuracy, balanced accuracy, macro precision, macro recall,
+AUC where defined, per-family precision/recall/F1/support, distinct subjects and
+components. Report equal-subject-weight metrics so prolific reports do not
+silently dominate row-weighted results.
+Tables: all_experiment_results.csv (variant=primary);
+        primary_seed_sensitivity_descriptive.csv;
+        <source>/audits/primary_cohort_eligibility.csv.
+Per-model artifacts: oof_predictions.csv, oof_probabilities.npz,
+ per_family_metrics.csv, confusion_counts.csv, directed_errors.csv,
+ model_specification.json, fold_metrics.csv, fit_warnings.csv.
+State effective fold counts and class coverage separately for each source.
+Different source cohorts are NOT a controlled test that Disk beats Memory.
+
+E2: VALIDATION-PROTOCOL SENSITIVITY (required)
+Question: How much do evaluation protocol and shared report/object context change
+scores on the SAME rows with the SAME fold-fitted representation?
+Prespecified models: LR and RF plus Dummy. Same three seeds.
+Compare primary component grouping against row, subject-only and object-only
+splits for Disk/Memory. Network compares row against subject/component grouping.
+The row/subject-only/object-only runs are explicitly OVERLAP DIAGNOSTICS, not
+independent-subject generalization results. Quantify crossing hashes/components
+and identical feature vectors, and show their association with score differences.
+Tables: protocol_sensitivity_comparisons.csv and each split_overlap_audit.csv.
+Do not call the difference a measured correction of all old manuscript bias:
+this experiment keeps preprocessing fold-fitted even in the row diagnostic.
+
+E3: FEATURE/REPORT-CONTEXT ABLATION (required)
+Question: Which report fields support predictions after related records are
+isolated? Are scores dominated by parent properties or names/paths?
+Prespecified LR/RF/Dummy; EXACT SAME primary rows and folds for every ablation.
+Disk: remove all parent fields; remove file names/paths; remove both groups;
+      remove parent_imphash alone.
+Memory: remove paths/commands; remove created-file/registry text; counts only.
+Network: remove domain-length/entropy fields; remove IP-count fields.
+Table: paired_ablation_differences.csv. Positive full-minus-ablated values mean
+performance decreased after removing those fields. Treat as descriptive paired
+OOF effects; do not claim independent-fold statistical significance.
+
+E4: EXACT-FEATURE-COLLISION SENSITIVITY (required for Network)
+Question: Does performance persist when identical predictor vectors from different
+subjects cannot be split across training/test?
+Create additional component edges from identical predictors ONLY, never labels.
+On a COMMON independently evaluable cohort, compare ordinary identity components
+with identity-plus-exact-vector components. Report the common cohort attrition
+and do not compare this subset directly with the larger primary task.
+Default source: Network. Add --collision-sources disk memory network to extend.
+Tables: collision_common_cohort_eligibility.csv,
+ feature_collision_audit.csv, protocol_sensitivity_comparisons.csv.
+These are exact-vector checks, NOT semantic/fuzzy near-duplicate detection.
+Identical vectors can be legitimate limited-information observations, so they
+remain in E1; E4 describes sensitivity rather than declaring all collisions leaks.
+
+E5: FORWARD TIME HOLDOUT (requires real timestamps)
+Question: Does the result hold for later first-seen samples or later executions?
+Supply --metadata-csv and a prespecified --temporal-cutoff. Metadata columns:
+ source,subject_sha256,timestamp,timestamp_kind
+Allowed kinds: first_seen OR report_execution, one kind per source. Exactly one
+unambiguous row per source/subject; resolve multiple analyses before supplying it.
+Use UTC/ISO-8601 timestamps. Retrieval/collection dates are rejected as substitutes
+for malware first-seen time. Execution dates support execution-period transfer,
+not a claim that the malware itself is newly seen.
+Train components must have ALL timestamps before the cutoff; test components
+must have ALL on/after it. Components spanning the boundary or missing timestamps
+are excluded and counted. Training-family inclusion uses TRAINING support only.
+LR/RF/Dummy are fixed before testing; settings are not selected on holdout scores.
+Report known-family coverage, known-family metrics and ALL-test accuracy.
+Unseen training families are listed and counted as errors in all-test accuracy;
+this script does not implement unknown-family rejection/open-set detection.
+Without genuine metadata this experiment is explicitly blocked, not fabricated.
+
+E6: INDEPENDENT COLLECTION HOLDOUT (strongly useful)
+Question: Do the trained rules transfer beyond the original collection?
+Supply --external-data-dir with separately collected schema-compatible tables.
+Entire external components touching training object/subject identities are
+excluded. Keep test labels out of training-family selection and tuning. Report
+known-family coverage and unknown-family counts as in E5. Use independent input
+checksums and document collection/report/environment differences yourself.
+Hash disjointness alone does not prove independent collection. This holdout is
+not a substitute for matching analysis/execution identity in any future fusion.
+
+E7: INDEPENDENT FAMILY-LABEL AUDIT (required evidence, human work remains)
+Question: Are inherited context labels reliable, and how do child artefact
+families differ from originating-report context?
+The script exports review_blinded_template.csv with source identities/fields but
+without the input family, and a SEPARATE review_private_label_key.csv. Default:
+up to five subjects per family, seed 42. Do not give the private key to reviewers.
+Source text can itself reveal names; acknowledge imperfect blinding.
+Reviewers fill review_scope=subject_context OR artefact_family, reviewed_family,
+and evidence_reference using independent evidence; keep unknown/uncertain cases
+unresolved rather than guessing. Feed completed reviews with --label-audit-csv.
+Agreement is summarized separately by scope. Artefact-vs-context differences are
+not automatically input-label errors. The code does not silently relabel data or
+claim that the entire dataset has been validated from this small reviewed subset.
+Inspect disagreeing cases, document the evidence, then define any corrected
+benchmark as a NEW version and rerun the experiments in a NEW output directory.
+No file was independently reviewed in the provided real dataset during this edit.
+
+5. EXPLANATIONS AND FORENSIC CASES
+Primary seed-42 RFs supply training-fold-background/held-out explanations.
+The explained model is prespecified RF and may differ from the model with the
+largest observed macro-F1. Do not say that RF explains a leading LR classifier.
+Disk/Memory mask complete encoded source fields jointly in exact source-level
+Shapley games. Numeric Network TreeSHAP has a same-game exact fallback. Every
+accepted attribution reconstructs that evaluated forest's predict_proba output.
+Source mappings are read from fitted ColumnTransformer blocks. Plots are generated
+from numeric model/SHAP outputs, not reconstructed from a screenshot. All Disk
+panels come from Disk models and fields; no Network panels are reused.
+
+The default global budget is 60 held-out rows and 32 training-background rows,
+plus deterministic correct/incorrect cases. Increase budgets explicitly for the
+final study if feasible and report them. Group RMS colors for text/one-hot fields
+are encoding summaries, not original semantic evidence values. Original fields
+are in local CSVs; use those and the originating report for forensic interpretation.
+Local cases explain their predicted class; do not compare signed contributions
+across different explained class coordinates as if they explain the same target.
+Optional PDP/ICE is descriptive. Optional t-SNE is OFF by default and is never
+used to establish generalization or operational utility.
+
+For the paper, add independently inspected cases showing the report reference,
+observed behaviour, prediction, explanation and corroboration/limitation. SHAP
+alone does not establish causal behaviour, investigator benefit or actor identity.
+The input schemas do not contain analysis/report IDs, environment IDs, complete
+query acquisition logs, or independent family ground truth. Those must be retained
+from collection or supplied as additional evidence, not reconstructed from hashes.
+
+6. UNCERTAINTY, REPRODUCIBILITY AND RESOURCES
+Primary uncertainty.json uses a component-bootstrap of FIXED OOF predictions.
+Its percentile intervals are conditional descriptions, not full retraining CIs,
+independent-fold tests, or proof that model differences are significant.
+Fold SD and three-seed min/max/SD are descriptive. No normal CI from sqrt(10)
+is reported. Use an untouched holdout for a claim about a chosen final model.
+Any hyperparameter search must be group-aware and nested inside training data;
+this script uses fixed settings and contains no tuning or test-weighted ensemble.
+
+Each run exports code/input checksums, package versions, CPU/GPU configuration,
+model settings, exact row/fold assignments, per-fold fit/prediction times, warnings
+and predictions. run_metadata.json reports process-wide high-water RSS, total
+elapsed time and input/result bytes. Process RSS is not per-model memory, and
+these measurements do not measure remote sandbox execution/storage cost. Do not
+claim quantified savings versus local sandbox execution without a real comparator.
+Check convergence warnings before publishing a model's scores.
+
+Use a NEW output directory after any code/data/settings change. --resume requires
+identical experimental options/code/input checksums and matching model signatures;
+it reuses completed model runs, not partially fitted folds. XAI failures remain
+failures on resume; fix them and use a new directory. Exit code 1 means a failed
+source/analysis stage; inspect failures.json. Missing optional temporal/external
+inputs appear as blocked entries in experiment_status.json and are not successes.
+A run reported complete can still have blocked evidence-dependent experiments.
+
+7. RUN COMMANDS FOR THIS EXACT-INPUT PACKAGE
+Extract the entire ZIP on your server and change into WinMal2026_v20. Keep the
+Dataset directory and checksum/provenance files together with the code. The
+launcher pins the exact uploaded workbooks; existing reduced tables elsewhere
+on the server do not enter the experiment.
+
+A. Audit input eligibility/review templates before expensive fitting:
+ bash run_winmal_v20.sh --audit-only --skip-xai --output-dir ./results/v20_input_audit
+
+B. Run the available primary, split, ablation and collision study:
+ bash run_winmal_v20.sh
+Inside an existing SLURM allocation:
+ srun bash run_winmal_v20.sh
+For a new allocation, from this extracted package directory:
+ sbatch run_winmal_v20.sh
+Adjust the launcher's SBATCH resources/partition/time to your cluster.
+
+C. Run E1 only first, optionally postponing XAI:
+ bash run_winmal_v20.sh --experiments primary --skip-xai --output-dir ./results/v20_primary
+
+D. Add genuine evidence-dependent experiments in a NEW directory:
+ bash run_winmal_v20.sh --metadata-csv /path/to/real_subject_timestamps.csv --temporal-cutoff 2026-03-01 --external-data-dir /path/to/independent_collection --label-audit-csv /path/to/completed_independent_reviews.csv --output-dir ./results/v20_with_holdouts
+The cutoff is only a syntax example. Justify your actual boundary before seeing
+model results. Do not create plausible dates merely to run E5.
+
+E. Resume B after interruption: add --resume to the original launcher command,
+keeping ALL other options, script bytes and input bytes unchanged. Never resume
+an old v18 directory with v20. Keep audit and model-run directories separate.
+
+F. Optional GPU: add --use-gpu --require-gpu only with an allocated GPU and
+working GPU-enabled XGBoost/CatBoost. Other models/encoders remain on CPU.
+The full suite is substantially larger than a single-seed, seven-model run.
+Predeclare diagnostic models/seeds; do not trim experiments after seeing scores.
+
+The .py filename retains seed_42 for continuity, but defaults are 42,123,350.
+For standalone/custom-input use, supply --disk-file, --memory-file and
+--network-file explicitly with their source-schema workbooks; the included
+launcher demonstrates the exact paths for these uploads.
+
+8. WHAT IS STILL REQUIRED FOR AN IEEE S&P SUBMISSION
+ - Inspect the ACTUAL revised results and establish a clear new security finding.
+ - Resolve label disagreements with independent evidence and report coverage.
+ - Supply credible temporal and/or independent collection evidence when making
+   broader generalization claims; otherwise state the restricted scope.
+ - Explain inventory-to-report-to-row attrition with original acquisition logs.
+ - Document environment/report selection and corroborate forensic case studies.
+ - Replace old results and figures; remove unresolved references and inappropriate
+   cross-task accuracy comparisons with CICIoMT2024.
+ - Prepare an anonymized artifact copy. Private runtime files include local paths,
+   SLURM details and environment information; inspect/redact identifying content
+   in the publication copy while keeping a private complete reproduction record.
+ - Keep required content/figures within the venue's main-paper allowance; the old
+   PDF has a main figure beyond page 13. Verify the current CFP before submission.
+
+9. V18 RUNTIME REPAIRS
+ - Disk: numeric import-hash/category codes no longer cause a blanket dtype
+   rejection. They remain opaque nominal codes; original hashes are not invented.
+ - Memory: schema-aware discovery skips the reduced engineered table and selects
+   a source-schema workbook when available. If only the reduced table exists on
+   your server, copy the original memory_dataset.xlsx or the nine-column source
+   copy there, then point --memory-file to that exact path. Do not rename the
+   reduced table to make it look like an original workbook.
+ - Network/CatBoost: class predictions shaped (n,1) are normalized to (n,) in both
+   CV and holdout evaluation. Invalid multi-output, fractional, nonfinite and
+   out-of-axis predictions still fail explicitly.
+ - Runtime logs now include the version, selected input and skipped schemas.
+   runtime_progress.json and failure.json identify the last source/model/fold/stage.
+ - Rerun in a FRESH output directory such as winmal_v20_full. Do not resume the
+   failed v17 directory after changing script bytes or input files.
+
+10. VERIFICATION PERFORMED DURING THIS CODE REVISION
+Syntax, built-in invariants, synthetic three-source workflow, train-only text
+vocabulary, transitive identity grouping, no-purity min10/silent-row retention,
+invalid hash handling, temporal partitioning, unknown-family holdout accounting,
+external overlap exclusion, independent-review ingestion, fixed-fold ablations,
+resume/signature checks, installed estimator fit/predict compatibility, exact
+source-game reconstruction for all three sources, and numeric plot generation.
+V18 additionally checks available original Disk/Memory/Network workbooks and the
+specific reduced Memory schema. A limited two-fold LR/Dummy smoke run verifies
+real-data loading and prediction paths; it is not the final three-seed study.
+The 311-row CatBoost-shaped output and both CV/holdout code paths are regression
+tested with a column-returning test estimator. Reports and independent labels
+remain unverified; no final conference-study scores are claimed.
+Optional XGBoost/CatBoost and SHAP-library rendering were unavailable here; their
+runtime versions and successful completion must be checked on your cluster.

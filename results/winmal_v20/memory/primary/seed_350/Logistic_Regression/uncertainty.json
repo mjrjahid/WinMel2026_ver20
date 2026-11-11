@@ -1,0 +1,32 @@
+{
+  "conditional_component_bootstrap": {
+    "draws": 500,
+    "components": 692,
+    "fixed_family_axis": [
+      "a310logger",
+      "agenttesla",
+      "asyncrat",
+      "chaos",
+      "coinminer",
+      "guloader",
+      "kovter",
+      "masslogger",
+      "nanocore",
+      "phorpiex",
+      "quasarrat",
+      "salatstealer",
+      "socks5systemz",
+      "stealc",
+      "vidar"
+    ],
+    "accuracy_percentile_95": [
+      0.663275614543963,
+      0.7297911371519246
+    ],
+    "macro_f1_percentile_95": [
+      0.5666608926070448,
+      0.6368816972749495
+    ],
+    "scope": "uncertainty conditional on fixed OOF predictions; excludes model-retraining uncertainty and is not a model-comparison significance test"
+  }
+}

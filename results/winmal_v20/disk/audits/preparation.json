@@ -1,0 +1,30 @@
+{
+  "source": "disk",
+  "input_path": "/nfs/fjahiduzzaman/thesis/S_P/WinMal2026_v20/Dataset/disk_dataset_preprocessed_high_accuracy.xlsx",
+  "input_sha256": "fb92a04cca498ac347269461f5bfeb4394de69740418a07e39af337d4e1f3595",
+  "input_records": 3443,
+  "clean_records": 3443,
+  "exclusions": {},
+  "subjects": 800,
+  "components": 647,
+  "feature_definition": "provided source-schema fields; upstream derivation must be documented",
+  "all_zero_network_rows_removed": false,
+  "conflicting_vector_rows_removed": false,
+  "purity_or_accuracy_filter_used": false,
+  "label_meaning": "originating analysed-subject family context, inherited from input target",
+  "artifact_family_independently_validated": false,
+  "identity_quality_by_column": {
+    "parent_sha256": {
+      "invalid_or_missing_rows": 0,
+      "invalid_numeric_values": 0
+    },
+    "sha256": {
+      "invalid_or_missing_rows": 0,
+      "invalid_numeric_values": 0
+    }
+  },
+  "source_value_normalization": [],
+  "upstream_preparation_warning": "Earlier filtering or imputation cannot be undone. Use original schema-preserving rows; collection date is not malware first-seen date.",
+  "largest_component_rows": 322,
+  "conflicting_feature_vectors": 0
+}

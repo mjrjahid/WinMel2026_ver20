@@ -1,0 +1,16 @@
+target,rows,subjects,independent_groups,included,reason
+a310logger,206,130,128,True,included
+agenttesla,24,20,20,True,included
+asyncrat,37,22,22,True,included
+chaos,139,71,69,True,included
+coinminer,59,51,51,True,included
+guloader,36,36,36,True,included
+kovter,125,55,55,True,included
+masslogger,13,13,13,True,included
+nanocore,107,73,72,True,included
+phorpiex,121,59,55,True,included
+quasarrat,37,20,20,True,included
+salatstealer,129,49,49,True,included
+socks5systemz,25,25,25,True,included
+stealc,38,38,38,True,included
+vidar,39,39,39,True,included

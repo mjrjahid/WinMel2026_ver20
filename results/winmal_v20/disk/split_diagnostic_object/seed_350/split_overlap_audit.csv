@@ -1,0 +1,6 @@
+fold,train_rows,test_rows,train_subjects,test_subjects,subject_overlap,object_overlap,any_executable_overlap,component_overlap,exact_feature_vector_overlap
+1,2747,687,686,261,152,0,152,93,17
+2,2747,687,683,249,137,0,137,87,17
+3,2747,687,682,249,136,0,136,87,13
+4,2747,687,687,255,147,0,147,89,18
+5,2748,686,681,243,129,0,129,82,16

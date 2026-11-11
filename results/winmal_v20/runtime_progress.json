@@ -1,0 +1,8 @@
+{
+  "source": "network",
+  "variant": "collision_common_vector_component",
+  "model": "Dummy Majority",
+  "seed": 350,
+  "fold": 10,
+  "stage": "predicting_and_validating_probabilities"
+}

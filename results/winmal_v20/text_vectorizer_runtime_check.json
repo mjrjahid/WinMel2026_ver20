@@ -1,0 +1,18 @@
+{
+  "sklearn_version": "1.8.0",
+  "selected_backend": "compatible word-ngram subclasses",
+  "checks": {
+    "installed_count": {
+      "passed": true
+    },
+    "installed_tfidf": {
+      "passed": true
+    },
+    "compatible_count": {
+      "passed": true
+    },
+    "compatible_tfidf": {
+      "passed": true
+    }
+  }
+}

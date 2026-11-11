@@ -1,0 +1,48 @@
+{
+  "model": "Naive Bayes",
+  "parameters": {
+    "priors": null,
+    "var_smoothing": 1e-09
+  },
+  "source_fields": [
+    "size",
+    "type",
+    "parent_size",
+    "parent_type",
+    "parent_imphash",
+    "file_name",
+    "file_path"
+  ],
+  "preprocessing": "ColumnTransformer(sparse_threshold=1.0,\n                  transformers=[('field_size',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median')),\n                                                 ('scale', StandardScaler())]),\n                                 ['size']),\n                                ('field_type',\n                                 OneHotEncoder(dtype=<class 'numpy.float32'>,\n                                               handle_unknown='ignore',\n                                               max_categories=512),\n                                 ['type']),\n                                ('field_parent_size',\n                                 Pipeline(steps=[('imputer'...\n                                ('field_parent_type',\n                                 OneHotEncoder(dtype=<class 'numpy.float32'>,\n                                               handle_unknown='ignore',\n                                               max_categories=512),\n                                 ['parent_type']),\n                                ('field_parent_imphash',\n                                 OneHotEncoder(dtype=<class 'numpy.float32'>,\n                                               handle_unknown='ignore',\n                                               max_categories=512),\n                                 ['parent_imphash']),\n                                ('field_file_name', StableTextVectorizer(),\n                                 'file_name'),\n                                ('field_file_path', StableTextVectorizer(),\n                                 'file_path')])",
+  "dense_budget_mb": 512,
+  "dense_input_dtype": "float64",
+  "selection": "fixed settings, no outer-test tuning",
+  "class_axis": [
+    "a310logger",
+    "agenttesla",
+    "asyncrat",
+    "chaos",
+    "coinminer",
+    "conti",
+    "donutloader",
+    "guloader",
+    "kovter",
+    "lockbit",
+    "lumma",
+    "nanocore",
+    "phobos",
+    "phorpiex",
+    "qbot",
+    "quasarrat",
+    "redline",
+    "revil",
+    "ryuk",
+    "salatstealer",
+    "socks5systemz",
+    "stealc",
+    "vidar",
+    "wannacry"
+  ],
+  "seed": 42,
+  "signature": "78f7b3391abb376373225eb80dabe06b1d6013b26288ea1b5c30845611b64d63"
+}

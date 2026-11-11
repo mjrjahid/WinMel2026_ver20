@@ -1,0 +1,28 @@
+{
+  "source": "disk",
+  "explicit_input": null,
+  "selected_path": "/nfs/fjahiduzzaman/thesis/S_P/WinMal2026_v20/Dataset/disk_dataset_preprocessed_high_accuracy.xlsx",
+  "selection_uses_labels_or_model_scores": false,
+  "candidates": [
+    {
+      "path": "/nfs/fjahiduzzaman/thesis/S_P/WinMal2026_v20/Dataset/disk_dataset_preprocessed_high_accuracy.xlsx",
+      "compatible": true,
+      "columns": [
+        "sha256",
+        "size",
+        "type",
+        "parent_sha256",
+        "parent_size",
+        "parent_type",
+        "parent_imphash",
+        "file_name",
+        "file_path",
+        "target"
+      ],
+      "missing_required_fields": [],
+      "source_normalization_notes": [],
+      "opaque_category_fields": 0,
+      "raw_network_lists": false
+    }
+  ]
+}

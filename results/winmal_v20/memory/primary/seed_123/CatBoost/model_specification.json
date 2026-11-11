@@ -1,0 +1,44 @@
+{
+  "model": "CatBoost",
+  "parameters": {
+    "iterations": 500,
+    "learning_rate": 0.08,
+    "depth": 6,
+    "loss_function": "MultiClass",
+    "thread_count": 16,
+    "random_seed": 123,
+    "verbose": false,
+    "auto_class_weights": "Balanced"
+  },
+  "source_fields": [
+    "normalized_path",
+    "command_line",
+    "total_processes",
+    "created_files",
+    "registry",
+    "modules_count"
+  ],
+  "preprocessing": "ColumnTransformer(sparse_threshold=1.0,\n                  transformers=[('field_normalized_path',\n                                 StableTextVectorizer(), 'normalized_path'),\n                                ('field_command_line', StableTextVectorizer(),\n                                 'command_line'),\n                                ('field_total_processes',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median'))]),\n                                 ['total_processes']),\n                                ('field_created_files', StableTextVectorizer(),\n                                 'created_files'),\n                                ('field_registry', StableTextVectorizer(),\n                                 'registry'),\n                                ('field_modules_count',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median'))]),\n                                 ['modules_count'])])",
+  "dense_budget_mb": 512,
+  "dense_input_dtype": "float32",
+  "selection": "fixed settings, no outer-test tuning",
+  "class_axis": [
+    "a310logger",
+    "agenttesla",
+    "asyncrat",
+    "chaos",
+    "coinminer",
+    "guloader",
+    "kovter",
+    "masslogger",
+    "nanocore",
+    "phorpiex",
+    "quasarrat",
+    "salatstealer",
+    "socks5systemz",
+    "stealc",
+    "vidar"
+  ],
+  "seed": 123,
+  "signature": "d6c05c69e67a26d6ff1f56f9032cf79d20948a8bb7d19708e074f95a1a91d01f"
+}

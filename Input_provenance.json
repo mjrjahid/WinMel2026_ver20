@@ -1,0 +1,66 @@
+[
+  {
+    "source": "disk",
+    "uploaded_filename": "disk_dataset_preprocessed_high_accuracy(3).xlsx",
+    "bundle_path": "Dataset/disk_dataset_preprocessed_high_accuracy.xlsx",
+    "sha256": "fb92a04cca498ac347269461f5bfeb4394de69740418a07e39af337d4e1f3595",
+    "size_bytes": 327184,
+    "uploaded_rows": 3443,
+    "uploaded_families": 25,
+    "columns": [
+      "sha256",
+      "size",
+      "type",
+      "parent_sha256",
+      "parent_size",
+      "parent_type",
+      "parent_imphash",
+      "file_name",
+      "file_path",
+      "target"
+    ],
+    "workbook_contents_modified": false
+  },
+  {
+    "source": "memory",
+    "uploaded_filename": "memory_dataset_preprocessed_high_accuracy(5).xlsx",
+    "bundle_path": "Dataset/memory_dataset_preprocessed_high_accuracy.xlsx",
+    "sha256": "c35c85e2feb9ede463ebbb1e6649d8288ba8f204e10013f7288f028a6626f7c1",
+    "size_bytes": 9875987,
+    "uploaded_rows": 2014,
+    "uploaded_families": 23,
+    "columns": [
+      "sha256",
+      "normalized_path",
+      "command_line",
+      "parent_sha256",
+      "total_processes",
+      "created_files",
+      "registry",
+      "modules_count",
+      "target"
+    ],
+    "workbook_contents_modified": false
+  },
+  {
+    "source": "network",
+    "uploaded_filename": "network_dataset_preprocessed_high_accuracy(5).xlsx",
+    "bundle_path": "Dataset/network_dataset_preprocessed_high_accuracy.xlsx",
+    "sha256": "d69d57fdc612433551deb3c1ee419178bbd868c8d4a8dbd9eda290c7a1c13464",
+    "size_bytes": 61765,
+    "uploaded_rows": 707,
+    "uploaded_families": 8,
+    "columns": [
+      "sha256_sample",
+      "avg_domain_len",
+      "mean_domain_entropy",
+      "n_public_service_domains",
+      "n_unique_tlds",
+      "n_public_ips",
+      "n_unique_ips",
+      "domains_per_conn",
+      "target"
+    ],
+    "workbook_contents_modified": false
+  }
+]

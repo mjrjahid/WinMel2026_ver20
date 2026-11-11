@@ -1,0 +1,55 @@
+{
+  "version": "v20",
+  "files": [
+    {
+      "path": "Dataset/disk_dataset_preprocessed_high_accuracy.xlsx",
+      "sha256": "fb92a04cca498ac347269461f5bfeb4394de69740418a07e39af337d4e1f3595",
+      "size_bytes": 327184
+    },
+    {
+      "path": "Dataset/memory_dataset_preprocessed_high_accuracy.xlsx",
+      "sha256": "c35c85e2feb9ede463ebbb1e6649d8288ba8f204e10013f7288f028a6626f7c1",
+      "size_bytes": 9875987
+    },
+    {
+      "path": "Dataset/network_dataset_preprocessed_high_accuracy.xlsx",
+      "sha256": "d69d57fdc612433551deb3c1ee419178bbd868c8d4a8dbd9eda290c7a1c13464",
+      "size_bytes": 61765
+    },
+    {
+      "path": "Input_provenance.json",
+      "sha256": "f618b1b781ea805859d303735dfa903ebeb8e88d4f16c6fe2b0db887234440d6",
+      "size_bytes": 1839
+    },
+    {
+      "path": "README_RUN_FIRST.txt",
+      "sha256": "fa9ccf2473d5f072c4b496dc4ea3ed0afb747928287bd535dc2b5d14060a21a2",
+      "size_bytes": 5170
+    },
+    {
+      "path": "WinMal2026_Experiment_Guide.txt",
+      "sha256": "96724a7274114bd032d88d377a171b43cfbb1ab9a3a9995a88827e1b761be400",
+      "size_bytes": 27347
+    },
+    {
+      "path": "combined_dataset_slurm_gpu_full_analysis_seed_42.py",
+      "sha256": "38aeb466ae2e20701438ca82e245e29a7981124c2090f67e0b4d4e6cc2fd35aa",
+      "size_bytes": 170035
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "4290aeb214f091d59e85e0471e41d0db74fb99cb3b6fab82153be3ecd697fcd4",
+      "size_bytes": 79
+    },
+    {
+      "path": "run_winmal_v20.sh",
+      "sha256": "5d1075ff62fd81e810d0a3c66f24f7d0706fa67a072dc3099ea466dd868aee05",
+      "size_bytes": 1158
+    },
+    {
+      "path": "verify_bundle.py",
+      "sha256": "2e57cd4ec243916e0131d4fb5c0eb4674997ef58ee7e4941647b1a3c94e78050",
+      "size_bytes": 1085
+    }
+  ]
+}

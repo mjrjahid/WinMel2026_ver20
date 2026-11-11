@@ -1,0 +1,51 @@
+{
+  "model": "Random Forest",
+  "parameters": {
+    "bootstrap": true,
+    "ccp_alpha": 0.0,
+    "class_weight": "balanced_subsample",
+    "criterion": "gini",
+    "max_depth": null,
+    "max_features": "sqrt",
+    "max_leaf_nodes": null,
+    "max_samples": null,
+    "min_impurity_decrease": 0.0,
+    "min_samples_leaf": 1,
+    "min_samples_split": 2,
+    "min_weight_fraction_leaf": 0.0,
+    "monotonic_cst": null,
+    "n_estimators": 400,
+    "n_jobs": 16,
+    "oob_score": false,
+    "random_state": 42,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "source_fields": [
+    "total_processes",
+    "modules_count"
+  ],
+  "preprocessing": "ColumnTransformer(sparse_threshold=1.0,\n                  transformers=[('field_total_processes',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median'))]),\n                                 ['total_processes']),\n                                ('field_modules_count',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median'))]),\n                                 ['modules_count'])])",
+  "dense_budget_mb": 512,
+  "dense_input_dtype": null,
+  "selection": "fixed settings, no outer-test tuning",
+  "class_axis": [
+    "a310logger",
+    "agenttesla",
+    "asyncrat",
+    "chaos",
+    "coinminer",
+    "guloader",
+    "kovter",
+    "masslogger",
+    "nanocore",
+    "phorpiex",
+    "quasarrat",
+    "salatstealer",
+    "socks5systemz",
+    "stealc",
+    "vidar"
+  ],
+  "seed": 42,
+  "signature": "7e81fafed771ba9eaa2317e6eb032c8de863508a6ea6e49e0e44d06ff5f16959"
+}

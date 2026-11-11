@@ -1,0 +1,11 @@
+source,variant,seed,model,fold,raw_probability_dtype,raw_shape,expected_rows,expected_columns,fitted_class_axis,expected_class_axis,atol,rtol,repaired,nonfinite_entries,negative_entries,above_one_entries,probability_min,probability_max,row_sum_min,row_sum_max,maximum_absolute_row_sum_error,status
+network,ablation_no_ip_counts,42,Dummy Majority,1,float64,"[71, 8]",71,8,"[0, 1, 2, 3, 4, 5, 6, 7]","[0, 1, 2, 3, 4, 5, 6, 7]",1e-05,1e-05,False,0,0,0,0.0,1.0,1.0,1.0,0.0,passed
+network,ablation_no_ip_counts,42,Dummy Majority,2,float64,"[72, 8]",72,8,"[0, 1, 2, 3, 4, 5, 6, 7]","[0, 1, 2, 3, 4, 5, 6, 7]",1e-05,1e-05,False,0,0,0,0.0,1.0,1.0,1.0,0.0,passed
+network,ablation_no_ip_counts,42,Dummy Majority,3,float64,"[71, 8]",71,8,"[0, 1, 2, 3, 4, 5, 6, 7]","[0, 1, 2, 3, 4, 5, 6, 7]",1e-05,1e-05,False,0,0,0,0.0,1.0,1.0,1.0,0.0,passed
+network,ablation_no_ip_counts,42,Dummy Majority,4,float64,"[70, 8]",70,8,"[0, 1, 2, 3, 4, 5, 6, 7]","[0, 1, 2, 3, 4, 5, 6, 7]",1e-05,1e-05,False,0,0,0,0.0,1.0,1.0,1.0,0.0,passed
+network,ablation_no_ip_counts,42,Dummy Majority,5,float64,"[71, 8]",71,8,"[0, 1, 2, 3, 4, 5, 6, 7]","[0, 1, 2, 3, 4, 5, 6, 7]",1e-05,1e-05,False,0,0,0,0.0,1.0,1.0,1.0,0.0,passed
+network,ablation_no_ip_counts,42,Dummy Majority,6,float64,"[70, 8]",70,8,"[0, 1, 2, 3, 4, 5, 6, 7]","[0, 1, 2, 3, 4, 5, 6, 7]",1e-05,1e-05,False,0,0,0,0.0,1.0,1.0,1.0,0.0,passed
+network,ablation_no_ip_counts,42,Dummy Majority,7,float64,"[70, 8]",70,8,"[0, 1, 2, 3, 4, 5, 6, 7]","[0, 1, 2, 3, 4, 5, 6, 7]",1e-05,1e-05,False,0,0,0,0.0,1.0,1.0,1.0,0.0,passed
+network,ablation_no_ip_counts,42,Dummy Majority,8,float64,"[71, 8]",71,8,"[0, 1, 2, 3, 4, 5, 6, 7]","[0, 1, 2, 3, 4, 5, 6, 7]",1e-05,1e-05,False,0,0,0,0.0,1.0,1.0,1.0,0.0,passed
+network,ablation_no_ip_counts,42,Dummy Majority,9,float64,"[70, 8]",70,8,"[0, 1, 2, 3, 4, 5, 6, 7]","[0, 1, 2, 3, 4, 5, 6, 7]",1e-05,1e-05,False,0,0,0,0.0,1.0,1.0,1.0,0.0,passed
+network,ablation_no_ip_counts,42,Dummy Majority,10,float64,"[71, 8]",71,8,"[0, 1, 2, 3, 4, 5, 6, 7]","[0, 1, 2, 3, 4, 5, 6, 7]",1e-05,1e-05,False,0,0,0,0.0,1.0,1.0,1.0,0.0,passed

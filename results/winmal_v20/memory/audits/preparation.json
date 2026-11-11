@@ -1,0 +1,32 @@
+{
+  "source": "memory",
+  "input_path": "/nfs/fjahiduzzaman/thesis/S_P/WinMal2026_v20/Dataset/memory_dataset_preprocessed_high_accuracy.xlsx",
+  "input_sha256": "c35c85e2feb9ede463ebbb1e6649d8288ba8f204e10013f7288f028a6626f7c1",
+  "input_records": 2014,
+  "clean_records": 1135,
+  "exclusions": {
+    "invalid_or_missing_sha256": 879
+  },
+  "subjects": 701,
+  "components": 692,
+  "feature_definition": "provided source-schema fields; upstream derivation must be documented",
+  "all_zero_network_rows_removed": false,
+  "conflicting_vector_rows_removed": false,
+  "purity_or_accuracy_filter_used": false,
+  "label_meaning": "originating analysed-subject family context, inherited from input target",
+  "artifact_family_independently_validated": false,
+  "identity_quality_by_column": {
+    "parent_sha256": {
+      "invalid_or_missing_rows": 879,
+      "invalid_numeric_values": 879
+    },
+    "sha256": {
+      "invalid_or_missing_rows": 0,
+      "invalid_numeric_values": 0
+    }
+  },
+  "source_value_normalization": [],
+  "upstream_preparation_warning": "Earlier filtering or imputation cannot be undone. Use original schema-preserving rows; collection date is not malware first-seen date.",
+  "largest_component_rows": 27,
+  "conflicting_feature_vectors": 0
+}

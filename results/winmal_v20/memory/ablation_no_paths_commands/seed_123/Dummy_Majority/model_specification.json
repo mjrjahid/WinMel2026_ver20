@@ -1,0 +1,37 @@
+{
+  "model": "Dummy Majority",
+  "parameters": {
+    "constant": null,
+    "random_state": 123,
+    "strategy": "most_frequent"
+  },
+  "source_fields": [
+    "created_files",
+    "registry",
+    "total_processes",
+    "modules_count"
+  ],
+  "preprocessing": "ColumnTransformer(sparse_threshold=1.0,\n                  transformers=[('field_created_files', StableTextVectorizer(),\n                                 'created_files'),\n                                ('field_registry', StableTextVectorizer(),\n                                 'registry'),\n                                ('field_total_processes',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median'))]),\n                                 ['total_processes']),\n                                ('field_modules_count',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median'))]),\n                                 ['modules_count'])])",
+  "dense_budget_mb": 512,
+  "dense_input_dtype": null,
+  "selection": "fixed settings, no outer-test tuning",
+  "class_axis": [
+    "a310logger",
+    "agenttesla",
+    "asyncrat",
+    "chaos",
+    "coinminer",
+    "guloader",
+    "kovter",
+    "masslogger",
+    "nanocore",
+    "phorpiex",
+    "quasarrat",
+    "salatstealer",
+    "socks5systemz",
+    "stealc",
+    "vidar"
+  ],
+  "seed": 123,
+  "signature": "7da46edf997a3b50c0b3303ae085104299842f833d0554268e7198b7b37143b4"
+}

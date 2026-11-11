@@ -1,0 +1,26 @@
+{
+  "source": "network",
+  "input_path": "/nfs/fjahiduzzaman/thesis/S_P/WinMal2026_v20/Dataset/network_dataset_preprocessed_high_accuracy.xlsx",
+  "input_sha256": "d69d57fdc612433551deb3c1ee419178bbd868c8d4a8dbd9eda290c7a1c13464",
+  "input_records": 707,
+  "clean_records": 707,
+  "exclusions": {},
+  "subjects": 707,
+  "components": 707,
+  "feature_definition": "provided source-schema fields; upstream derivation must be documented",
+  "all_zero_network_rows_removed": false,
+  "conflicting_vector_rows_removed": false,
+  "purity_or_accuracy_filter_used": false,
+  "label_meaning": "originating analysed-subject family context, inherited from input target",
+  "artifact_family_independently_validated": false,
+  "identity_quality_by_column": {
+    "sha256_sample": {
+      "invalid_or_missing_rows": 0,
+      "invalid_numeric_values": 0
+    }
+  },
+  "source_value_normalization": [],
+  "upstream_preparation_warning": "Earlier filtering or imputation cannot be undone. Use original schema-preserving rows; collection date is not malware first-seen date.",
+  "largest_component_rows": 1,
+  "conflicting_feature_vectors": 6
+}

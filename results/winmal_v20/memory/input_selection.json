@@ -1,0 +1,27 @@
+{
+  "source": "memory",
+  "explicit_input": null,
+  "selected_path": "/nfs/fjahiduzzaman/thesis/S_P/WinMal2026_v20/Dataset/memory_dataset_preprocessed_high_accuracy.xlsx",
+  "selection_uses_labels_or_model_scores": false,
+  "candidates": [
+    {
+      "path": "/nfs/fjahiduzzaman/thesis/S_P/WinMal2026_v20/Dataset/memory_dataset_preprocessed_high_accuracy.xlsx",
+      "compatible": true,
+      "columns": [
+        "sha256",
+        "normalized_path",
+        "command_line",
+        "parent_sha256",
+        "total_processes",
+        "created_files",
+        "registry",
+        "modules_count",
+        "target"
+      ],
+      "missing_required_fields": [],
+      "source_normalization_notes": [],
+      "opaque_category_fields": 0,
+      "raw_network_lists": false
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "model": "Dummy Majority",
+  "parameters": {
+    "constant": null,
+    "random_state": 123,
+    "strategy": "most_frequent"
+  },
+  "source_fields": [
+    "avg_domain_len",
+    "mean_domain_entropy",
+    "n_public_service_domains",
+    "n_unique_tlds",
+    "n_public_ips",
+    "n_unique_ips",
+    "domains_per_conn"
+  ],
+  "preprocessing": "ColumnTransformer(sparse_threshold=1.0,\n                  transformers=[('field_avg_domain_len',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median'))]),\n                                 ['avg_domain_len']),\n                                ('field_mean_domain_entropy',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median'))]),\n                                 ['mean_domain_entropy']),\n                                ('field_n_public_servic...\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median'))]),\n                                 ['n_public_ips']),\n                                ('field_n_unique_ips',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median'))]),\n                                 ['n_unique_ips']),\n                                ('field_domains_per_conn',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median'))]),\n                                 ['domains_per_conn'])])",
+  "dense_budget_mb": 512,
+  "dense_input_dtype": null,
+  "selection": "fixed settings, no outer-test tuning",
+  "class_axis": [
+    "asyncrat",
+    "lumma",
+    "phorpiex",
+    "quasarrat",
+    "redline",
+    "revil",
+    "vidar",
+    "wannacry"
+  ],
+  "seed": 123,
+  "signature": "779bd27aedaffd18240025f00f299032939fe24f304c7f47084d6b0afddd8e12"
+}

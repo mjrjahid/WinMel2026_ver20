@@ -1,0 +1,25 @@
+{
+  "conditional_component_bootstrap": {
+    "draws": 500,
+    "components": 707,
+    "fixed_family_axis": [
+      "asyncrat",
+      "lumma",
+      "phorpiex",
+      "quasarrat",
+      "redline",
+      "revil",
+      "vidar",
+      "wannacry"
+    ],
+    "accuracy_percentile_95": [
+      0.6753536067892504,
+      0.7383309759547383
+    ],
+    "macro_f1_percentile_95": [
+      0.4425115694847206,
+      0.49512688366315777
+    ],
+    "scope": "uncertainty conditional on fixed OOF predictions; excludes model-retraining uncertainty and is not a model-comparison significance test"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "model": "Logistic Regression",
+  "parameters": {
+    "C": 1.0,
+    "class_weight": null,
+    "dual": false,
+    "fit_intercept": true,
+    "intercept_scaling": 1,
+    "l1_ratio": 0.0,
+    "max_iter": 5000,
+    "n_jobs": 16,
+    "penalty": "deprecated",
+    "random_state": 350,
+    "solver": "lbfgs",
+    "tol": 0.0001,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "source_fields": [
+    "avg_domain_len",
+    "mean_domain_entropy",
+    "n_public_service_domains",
+    "n_unique_tlds",
+    "n_public_ips",
+    "n_unique_ips",
+    "domains_per_conn"
+  ],
+  "preprocessing": "ColumnTransformer(sparse_threshold=1.0,\n                  transformers=[('field_avg_domain_len',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median')),\n                                                 ('scale', StandardScaler())]),\n                                 ['avg_domain_len']),\n                                ('field_mean_domain_entropy',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median')),\n                                                 ('scale', StandardScaler...\n                                                 ('scale', StandardScaler())]),\n                                 ['n_public_ips']),\n                                ('field_n_unique_ips',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median')),\n                                                 ('scale', StandardScaler())]),\n                                 ['n_unique_ips']),\n                                ('field_domains_per_conn',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median')),\n                                                 ('scale', StandardScaler())]),\n                                 ['domains_per_conn'])])",
+  "dense_budget_mb": 512,
+  "dense_input_dtype": null,
+  "selection": "fixed settings, no outer-test tuning",
+  "class_axis": [
+    "asyncrat",
+    "lumma",
+    "phorpiex",
+    "quasarrat",
+    "redline",
+    "revil",
+    "vidar",
+    "wannacry"
+  ],
+  "seed": 350,
+  "signature": "688d49cc31828d21fa5d959cfebbf31e0d14f4e4924e247e02675530ab36171a"
+}

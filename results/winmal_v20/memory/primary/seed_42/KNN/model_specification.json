@@ -1,0 +1,44 @@
+{
+  "model": "KNN",
+  "parameters": {
+    "algorithm": "brute",
+    "leaf_size": 30,
+    "metric": "cosine",
+    "metric_params": null,
+    "n_jobs": 16,
+    "n_neighbors": 1,
+    "p": 2,
+    "weights": "uniform"
+  },
+  "source_fields": [
+    "normalized_path",
+    "command_line",
+    "total_processes",
+    "created_files",
+    "registry",
+    "modules_count"
+  ],
+  "preprocessing": "ColumnTransformer(sparse_threshold=1.0,\n                  transformers=[('field_normalized_path',\n                                 StableTextVectorizer(), 'normalized_path'),\n                                ('field_command_line', StableTextVectorizer(),\n                                 'command_line'),\n                                ('field_total_processes',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median')),\n                                                 ('scale', StandardScaler())]),\n                                 ['total_processes']),\n                                ('field_created_files', StableTextVectorizer(),\n                                 'created_files'),\n                                ('field_registry', StableTextVectorizer(),\n                                 'registry'),\n                                ('field_modules_count',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median')),\n                                                 ('scale', StandardScaler())]),\n                                 ['modules_count'])])",
+  "dense_budget_mb": 512,
+  "dense_input_dtype": null,
+  "selection": "fixed settings, no outer-test tuning",
+  "class_axis": [
+    "a310logger",
+    "agenttesla",
+    "asyncrat",
+    "chaos",
+    "coinminer",
+    "guloader",
+    "kovter",
+    "masslogger",
+    "nanocore",
+    "phorpiex",
+    "quasarrat",
+    "salatstealer",
+    "socks5systemz",
+    "stealc",
+    "vidar"
+  ],
+  "seed": 42,
+  "signature": "3afcecba0c340e34debfc48c64de18c8d6494b0e4ae25a32d53a31bf7c2c313c"
+}

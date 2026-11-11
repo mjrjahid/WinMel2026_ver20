@@ -1,0 +1,32 @@
+{
+  "model": "Naive Bayes",
+  "parameters": {
+    "priors": null,
+    "var_smoothing": 1e-09
+  },
+  "source_fields": [
+    "avg_domain_len",
+    "mean_domain_entropy",
+    "n_public_service_domains",
+    "n_unique_tlds",
+    "n_public_ips",
+    "n_unique_ips",
+    "domains_per_conn"
+  ],
+  "preprocessing": "ColumnTransformer(sparse_threshold=1.0,\n                  transformers=[('field_avg_domain_len',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median')),\n                                                 ('scale', StandardScaler())]),\n                                 ['avg_domain_len']),\n                                ('field_mean_domain_entropy',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median')),\n                                                 ('scale', StandardScaler...\n                                                 ('scale', StandardScaler())]),\n                                 ['n_public_ips']),\n                                ('field_n_unique_ips',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median')),\n                                                 ('scale', StandardScaler())]),\n                                 ['n_unique_ips']),\n                                ('field_domains_per_conn',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median')),\n                                                 ('scale', StandardScaler())]),\n                                 ['domains_per_conn'])])",
+  "dense_budget_mb": 512,
+  "dense_input_dtype": "float64",
+  "selection": "fixed settings, no outer-test tuning",
+  "class_axis": [
+    "asyncrat",
+    "lumma",
+    "phorpiex",
+    "quasarrat",
+    "redline",
+    "revil",
+    "vidar",
+    "wannacry"
+  ],
+  "seed": 123,
+  "signature": "70fc25ace2d29e9a48f256cf7bac36465c50652eb98fe054bb9609b01fd4e8f2"
+}

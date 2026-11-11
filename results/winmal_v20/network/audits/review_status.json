@@ -1,0 +1,10 @@
+{
+  "status": "pending independent review",
+  "sample_rows": 40,
+  "sampling": "seed-42 stratified sample, at most one row per subject per family",
+  "review_scopes": [
+    "subject_context",
+    "artefact_family"
+  ],
+  "warning": "The input label key is separate. Reviewers should not use the input family as independent evidence. Raw source text may itself reveal names; document blinding limits."
+}

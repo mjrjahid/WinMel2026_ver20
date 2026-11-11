@@ -1,0 +1,50 @@
+{
+  "model": "Logistic Regression",
+  "parameters": {
+    "C": 3.0,
+    "class_weight": "balanced",
+    "dual": false,
+    "fit_intercept": true,
+    "intercept_scaling": 1,
+    "l1_ratio": 0.0,
+    "max_iter": 5000,
+    "n_jobs": 16,
+    "penalty": "deprecated",
+    "random_state": 123,
+    "solver": "lbfgs",
+    "tol": 0.0001,
+    "verbose": 0,
+    "warm_start": false
+  },
+  "source_fields": [
+    "normalized_path",
+    "command_line",
+    "total_processes",
+    "created_files",
+    "registry",
+    "modules_count"
+  ],
+  "preprocessing": "ColumnTransformer(sparse_threshold=1.0,\n                  transformers=[('field_normalized_path',\n                                 StableTextVectorizer(), 'normalized_path'),\n                                ('field_command_line', StableTextVectorizer(),\n                                 'command_line'),\n                                ('field_total_processes',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median')),\n                                                 ('scale', StandardScaler())]),\n                                 ['total_processes']),\n                                ('field_created_files', StableTextVectorizer(),\n                                 'created_files'),\n                                ('field_registry', StableTextVectorizer(),\n                                 'registry'),\n                                ('field_modules_count',\n                                 Pipeline(steps=[('imputer',\n                                                  SimpleImputer(keep_empty_features=True,\n                                                                strategy='median')),\n                                                 ('scale', StandardScaler())]),\n                                 ['modules_count'])])",
+  "dense_budget_mb": 512,
+  "dense_input_dtype": null,
+  "selection": "fixed settings, no outer-test tuning",
+  "class_axis": [
+    "a310logger",
+    "agenttesla",
+    "asyncrat",
+    "chaos",
+    "coinminer",
+    "guloader",
+    "kovter",
+    "masslogger",
+    "nanocore",
+    "phorpiex",
+    "quasarrat",
+    "salatstealer",
+    "socks5systemz",
+    "stealc",
+    "vidar"
+  ],
+  "seed": 123,
+  "signature": "ae5db89298d7979d5a1f3c14503861c7f32ceb767826dfe990a7b4cbc3bd18c0"
+}

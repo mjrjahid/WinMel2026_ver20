@@ -1,0 +1,17 @@
+true_family,predicted_family,errors
+lumma,redline,57
+phorpiex,redline,53
+asyncrat,redline,36
+wannacry,redline,28
+vidar,redline,20
+quasarrat,redline,14
+redline,lumma,11
+quasarrat,lumma,6
+redline,vidar,5
+revil,redline,3
+revil,lumma,3
+phorpiex,lumma,2
+quasarrat,vidar,1
+lumma,vidar,1
+wannacry,lumma,1
+wannacry,vidar,1
